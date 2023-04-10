@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { signUserFailure, signUserStart, signUserSucces } from "../slice/auth";
 import { useState } from "react";
 import AuthServise from "../service/auth";
+import { ValidationError } from "./";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -24,7 +25,7 @@ const Login = () => {
   };
 
   return (
-    <div className="text-center mt-5">
+    <div className="text-center my-5">
       <main className="form-signin w-25 m-auto">
         <form>
           <img
@@ -35,7 +36,8 @@ const Login = () => {
             style={{ borderRadius: "15px" }}
           />
           <h1 className="h3 mb-3 fw-normal">Please login</h1>
-          <div className="my-5">
+          <ValidationError />
+          <div className="my-1">
             <Input
               label={"Email"}
               state={email}
