@@ -22,7 +22,6 @@ const Login = () => {
       dispatch(signUserSucces(response.user));
       navigate("/");
     } catch (error) {
-      console.log(error.response.data.errors);
       dispatch(signUserFailure(error.response.data.errors));
     }
   };
@@ -31,7 +30,7 @@ const Login = () => {
     if (loggedIn) {
       navigate("/");
     }
-  }, []);
+  }, [loggedIn]);
 
   return (
     <div className="text-center my-5">
