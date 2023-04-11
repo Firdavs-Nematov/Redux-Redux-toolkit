@@ -5,6 +5,12 @@ import AuthServise from "../service/auth";
 import { signUserSucces } from "../slice/auth";
 import { useEffect } from "react";
 import { getItem } from "../helper/storage";
+import ArticleServise from "../service/article";
+import {
+  getArticlesFailure,
+  getArticlesStart,
+  getArticlesSucces,
+} from "../slice/articles";
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -18,11 +24,22 @@ export const App = () => {
     }
   };
 
+  const getArticles = async () => {
+    dispatch(getArticlesStart());
+    try {
+      const response = await ArticleServise.getArticles();
+      dispatch(getArticlesSucces(response.articles));
+    } catch (error) {
+      dispatch(getArticlesFailure());
+    }
+  };
+
   useEffect(() => {
     const token = getItem("token");
     if (token) {
       getUser();
     }
+    getArticles();
   }, []);
   return (
     <div>
