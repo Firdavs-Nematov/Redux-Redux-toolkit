@@ -11,6 +11,7 @@ import {
   getArticlesStart,
   getArticlesSucces,
 } from "../slice/articles";
+import ArticlesCard from "./articles-card";
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -44,11 +45,14 @@ export const App = () => {
   return (
     <div>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-      </Routes>
+      <div className="container mb-5">
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/articles/:slug" element={<ArticlesCard />} />
+        </Routes>
+      </div>
     </div>
   );
 };

@@ -1,13 +1,13 @@
 import Moment from "react-moment";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import Loader from "./loader";
+import { useNavigate } from "react-router-dom";
+import { Loader } from "../ui/";
 
 const Main = () => {
   const { articles, isLoading } = useSelector((state) => state.articles);
-
+  const navigate = useNavigate();
   return (
-    <div className="container">
+    <>
       {isLoading && <Loader />}
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         {articles.map((item) => (
@@ -30,14 +30,13 @@ const Main = () => {
                 <p className="card-text ">{item.description.slice(0, 100)}</p>
                 <div className="d-flex justify-content-between align-items-center">
                   <div className="btn-group">
-                    <Link to="/">
-                      <button
-                        type="button"
-                        className="btn btn-sm btn-outline-primary"
-                      >
-                        View
-                      </button>
-                    </Link>
+                    <button
+                      type="button"
+                      className="btn btn-sm btn-outline-primary"
+                      onClick={() => navigate(`/articles/${item.slug}`)}
+                    >
+                      View
+                    </button>
                     <button
                       type="button"
                       className="btn btn-sm btn-outline-success"
@@ -60,7 +59,7 @@ const Main = () => {
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

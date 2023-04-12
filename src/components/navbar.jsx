@@ -15,7 +15,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container mb-3">
       <nav className="navbar bg-body-tertiary">
         <div className="container-fluid">
           <Link className="navbar-brand" to={"/"}>
