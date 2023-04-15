@@ -15,7 +15,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="container mb-3">
+    <div className="container mb-3 navbar-main">
       <nav className="navbar bg-body-tertiary">
         <div className="container-fluid">
           <Link className="navbar-brand" to={"/"}>
@@ -25,6 +25,12 @@ const Navbar = () => {
             {loggedIn ? (
               <>
                 <p className="px-3 m-0 text-capitalize">{user.username}</p>
+                <Link
+                  to={"/create-article"}
+                  className="text-decoration-none pe-3"
+                >
+                  <p className="m-0">Create article</p>
+                </Link>
                 <button
                   className="btn btn-outline-danger"
                   onClick={logOutHandler}

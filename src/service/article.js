@@ -6,7 +6,11 @@ const ArticleServise = {
     return data;
   },
   async getArticlesCard(slug) {
-    const data = await axios.get(`/articles/${slug}`);
+    const { data } = await axios.get(`/articles/${slug}`);
+    return data;
+  },
+  async postArticle(article) {
+    const { data } = await axios.post("/articles", { article });
     return data;
   },
 };

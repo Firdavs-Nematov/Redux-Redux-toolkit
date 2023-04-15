@@ -1,17 +1,17 @@
 import { Route, Routes } from "react-router-dom";
-import { Main, Login, Register, Navbar } from "./index";
+import {
+  Main,
+  Login,
+  Register,
+  Navbar,
+  ArticlesCard,
+  CreateArticle,
+} from "./index";
 import { useDispatch } from "react-redux";
 import AuthServise from "../service/auth";
 import { signUserSucces } from "../slice/auth";
 import { useEffect } from "react";
 import { getItem } from "../helper/storage";
-import ArticleServise from "../service/article";
-import {
-  getArticlesFailure,
-  getArticlesStart,
-  getArticlesSucces,
-} from "../slice/articles";
-import ArticlesCard from "./articles-card";
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -25,23 +25,13 @@ export const App = () => {
     }
   };
 
-  const getArticles = async () => {
-    dispatch(getArticlesStart());
-    try {
-      const response = await ArticleServise.getArticles();
-      dispatch(getArticlesSucces(response.articles));
-    } catch (error) {
-      dispatch(getArticlesFailure());
-    }
-  };
-
   useEffect(() => {
     const token = getItem("token");
     if (token) {
       getUser();
     }
-    getArticles();
   }, []);
+
   return (
     <div>
       <Navbar />
@@ -51,6 +41,7 @@ export const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/articles/:slug" element={<ArticlesCard />} />
+          <Route path="/create-article" element={<CreateArticle />} />
         </Routes>
       </div>
     </div>

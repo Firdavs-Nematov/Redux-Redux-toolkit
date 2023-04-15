@@ -20,7 +20,7 @@ const ArticlesCard = () => {
       dispatch(getArticlesDetailsStart());
       try {
         const responce = await ArticleServise.getArticlesCard(slug);
-        dispatch(getArticlesDetailsSucces(responce.data.article));
+        dispatch(getArticlesDetailsSucces(responce.article));
       } catch (error) {
         dispatch(getArticlesDetailsFailure());
       }
